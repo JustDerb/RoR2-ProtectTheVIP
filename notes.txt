@@ -1,0 +1,227 @@
+﻿[Error  : Unity Log] OnObjSpawn netId: 7 has invalid asset Id
+[Info   : Unity Log] Unloaded scene lobby
+[Info   : Unity Log] Active scene changed from  to limbo
+[Info   : Unity Log] Loaded scene limbo loadSceneMode=Single
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.ClassicStageInfo.RebuildCards () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.ClassicStageInfo.Start () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+[Info   : Unity Log] OnClientSceneChanged networkSceneName=limbo currentSceneName=limbo
+[Info   : Unity Log] Player 0 already added, aborting.
+[Error  : Unity Log] OnObjSpawn netId: 7 has invalid asset Id
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.ArtifactEnabledResponse.OnEnable () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+UnityEngine.Networking.NetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.SteamNetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnP2PData(BaseSteamworks, CSteamID, Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnSteamClientP2PData(UInt64, Byte[], Int32, Int32)
+Facepunch.Steamworks.Networking:ReadP2PPacket(Int32)
+Facepunch.Steamworks.Networking:Update()
+Facepunch.Steamworks.BaseSteamworks:Update()
+Facepunch.Steamworks.Client:Update()
+RoR2.SteamworksClientManager:Update()
+RoR2.RoR2Application:Update()
+
+[Warning: Unity Log] Did not find target for sync message for 7
+
+----------------------------------
+GOOD RUN
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnEnable(orig_OnEnable, RunArtifactManager)
+DMD<>?1807669760:Hook<RoR2.RunArtifactManager::OnEnable>?1573392128(RunArtifactManager)
+UnityEngine.Networking.NetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.SteamNetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnP2PData(BaseSteamworks, CSteamID, Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnSteamClientP2PData(UInt64, Byte[], Int32, Int32)
+Facepunch.Steamworks.Networking:ReadP2PPacket(Int32)
+Facepunch.Steamworks.Networking:Update()
+Facepunch.Steamworks.BaseSteamworks:Update()
+Facepunch.Steamworks.Client:Update()
+RoR2.SteamworksClientManager:Update()
+RoR2.RoR2Application:Update()
+
+--------------------------------
+
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.CharacterBody.RecalculateStats () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.Start () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.CharacterBody.RecalculateStats () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.Start () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.CharacterBody.RecalculateStats () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterMaster.OnBodyStart (RoR2.CharacterBody body) (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.UpdateMasterLink () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.FixedUpdate () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.CharacterBody.RecalculateStats () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterMaster.OnBodyStart (RoR2.CharacterBody body) (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.UpdateMasterLink () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.CharacterBody.FixedUpdate () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+
+
+
+===============================================================
+
+GOOD RUN
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnEnable(orig_OnEnable, RunArtifactManager)
+DMD<>?-1051272704:Hook<RoR2.RunArtifactManager::OnEnable>?1743096320(RunArtifactManager)
+UnityEngine.Networking.NetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.SteamNetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnP2PData(BaseSteamworks, CSteamID, Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnSteamClientP2PData(UInt64, Byte[], Int32, Int32)
+Facepunch.Steamworks.Networking:ReadP2PPacket(Int32)
+Facepunch.Steamworks.Networking:Update()
+Facepunch.Steamworks.BaseSteamworks:Update()
+Facepunch.Steamworks.Client:Update()
+RoR2.SteamworksClientManager:Update()
+RoR2.RoR2Application:Update()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnDeserialize(orig_OnDeserialize, RunArtifactManager, NetworkReader, Boolean)
+DMD<>?-1051272704:Hook<RoR2.RunArtifactManager::OnDeserialize>?10653440(RunArtifactManager, NetworkReader, Boolean)
+UnityEngine.Networking.NetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.SteamNetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnP2PData(BaseSteamworks, CSteamID, Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnSteamClientP2PData(UInt64, Byte[], Int32, Int32)
+Facepunch.Steamworks.Networking:ReadP2PPacket(Int32)
+Facepunch.Steamworks.Networking:Update()
+Facepunch.Steamworks.BaseSteamworks:Update()
+Facepunch.Steamworks.Client:Update()
+RoR2.SteamworksClientManager:Update()
+RoR2.RoR2Application:Update()
+
+
+===================================================
+
+BAD RUN
+
+[Error  : Unity Log] OnObjSpawn netId: 133 has invalid asset Id
+[Info   : Unity Log] Unloaded scene lobby
+[Info   : Unity Log] Active scene changed from  to limbo
+[Info   : Unity Log] Loaded scene limbo loadSceneMode=Single
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.ClassicStageInfo.RebuildCards () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+RoR2.ClassicStageInfo.Start () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+
+[Info   : Unity Log] OnClientSceneChanged networkSceneName=limbo currentSceneName=limbo
+[Info   : Unity Log] Player 0 already added, aborting.
+[Error  : Unity Log] OnObjSpawn netId: 133 has invalid asset Id
+[Error  : Unity Log] NullReferenceException: Object reference not set to an instance of an object
+Stack trace:
+RoR2.ArtifactEnabledResponse.OnEnable () (at <61219714c53949e985731f1a5b7cd7a8>:0)
+UnityEngine.Networking.NetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.SteamNetworkConnection:TransportReceive(Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnP2PData(BaseSteamworks, CSteamID, Byte[], Int32, Int32)
+RoR2.Networking.GameNetworkManager:OnSteamClientP2PData(UInt64, Byte[], Int32, Int32)
+Facepunch.Steamworks.Networking:ReadP2PPacket(Int32)
+Facepunch.Steamworks.Networking:Update()
+Facepunch.Steamworks.BaseSteamworks:Update()
+Facepunch.Steamworks.Client:Update()
+RoR2.SteamworksClientManager:Update()
+RoR2.RoR2Application:Update()
+
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveEquipmentString(System.String)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+[Warning: Unity Log] [Server] function 'System.Void RoR2.Inventory::GiveItemString(System.String,System.Int32)' called on client
+
+
+=======================
+
+VANILLA GOOD RUN
+
+[Error  : Unity Log] NetworkSession_BeginRun
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnEnable(orig_OnEnable, RunArtifactManager)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnEnable>?-253851136(RunArtifactManager)
+UnityEngine.Object:Instantiate(GameObject)
+ProtectTheVIP.ProtectTheVIP:NetworkSession_BeginRun(orig_BeginRun, NetworkSession, Run, RuleBook, UInt64)
+DMD<>?-1586570752:Hook<RoR2.NetworkSession::BeginRun>?-62575232(NetworkSession, Run, RuleBook, UInt64)
+RoR2.PreGameController:StartRun()
+RoR2.PreGameController:Update()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkServer:Spawn(GameObject)
+ProtectTheVIP.ProtectTheVIP:NetworkSession_BeginRun(orig_BeginRun, NetworkSession, Run, RuleBook, UInt64)
+DMD<>?-1586570752:Hook<RoR2.NetworkSession::BeginRun>?-62575232(NetworkSession, Run, RuleBook, UInt64)
+RoR2.PreGameController:StartRun()
+RoR2.PreGameController:Update()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkServer:Spawn(GameObject)
+ProtectTheVIP.ProtectTheVIP:NetworkSession_BeginRun(orig_BeginRun, NetworkSession, Run, RuleBook, UInt64)
+DMD<>?-1586570752:Hook<RoR2.NetworkSession::BeginRun>?-62575232(NetworkSession, Run, RuleBook, UInt64)
+RoR2.PreGameController:StartRun()
+RoR2.PreGameController:Update()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate()
+
+[Error  : Unity Log] Exception: Exception of type 'System.Exception' was thrown.
+Stack trace:
+UnityEngine.Debug:LogException(Exception)
+ProtectTheVIP.ProtectTheVIP:RunArtifactManager_OnSerialize(orig_OnSerialize, RunArtifactManager, NetworkWriter, Boolean)
+DMD<>?-1586570752:Hook<RoR2.RunArtifactManager::OnSerialize>?-612072192(RunArtifactManager, NetworkWriter, Boolean)
+UnityEngine.Networking.NetworkIdentity:UNetStaticUpdate()
