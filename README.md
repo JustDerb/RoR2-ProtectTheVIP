@@ -12,8 +12,8 @@ No setup needed. If you want to customize the allies you need to boot the game a
 |----------|----|-----------|
 |`SpawnCards/CharacterSpawnCards/cscBeetle`|Beetle|Hard|
 |`SpawnCards/CharacterSpawnCards/cscLemurian`|Lemurian|Medium|
-|`SpawnCards/CharacterSpawnCards/cscLemurianBruiser`|ELder Lemurian|Easy|
-|`SpawnCards/CharacterSpawnCards/cscMiniMushroom`|Mioni Mushrum|Hard|
+|`SpawnCards/CharacterSpawnCards/cscLemurianBruiser`|Elder Lemurian|Easy|
+|`SpawnCards/CharacterSpawnCards/cscMiniMushroom`|Mini Mushrum|Hard|
 |`SpawnCards/CharacterSpawnCards/cscParent`|Parent|Easy|
 |`SpawnCards/CharacterSpawnCards/cscVulture`|Alloy Vulture|Medium|
 |`SpawnCards/CharacterSpawnCards/cscBison`|Bighorn Bison|Medium|
