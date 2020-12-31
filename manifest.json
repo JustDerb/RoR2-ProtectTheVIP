@@ -1,6 +1,6 @@
 ﻿{
     "name": "ProtectTheVIP",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/JustDerb/RoR2-ProtectTheVIP",
     "description": "Protect the VIP: If they die, you die.",
     "dependencies": [

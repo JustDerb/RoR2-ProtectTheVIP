@@ -98,6 +98,13 @@ Loading more then 10 custom monsters (excluding the default allies) may causes p
 
 # Changelog
 
+### 1.0.1
+
+See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/1?closed=1
+
+* Non-ally runs no longer activate mod on Moon stage (Mithrix)
+* README.md updates (formatting)
+
 ### 1.0.0
 
 * Initial release
