@@ -188,7 +188,7 @@ namespace ProtectTheVIP
 
             StartCoroutine(TeleportAlliesToFirstAvailablePlayerRoutine(null, 3));
 
-            if (SceneCatalog.GetSceneDefForCurrentScene().baseSceneName == "moon")
+            if (SceneCatalog.GetSceneDefForCurrentScene().baseSceneName == "moon" && allies.Count != 0)
             {
                 // Stage with Mithrix, so we need to set up extra stuff for the AI
                 StartCoroutine(SendChat(3f,
