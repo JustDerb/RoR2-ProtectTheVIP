@@ -9,6 +9,8 @@ namespace ProtectTheVIP
     {
         public string NameToken { get; set; }
 
+        public CharacterMaster Leader { get; set; }
+
         private CharacterMaster master;
 
         public void Awake()
@@ -16,12 +18,16 @@ namespace ProtectTheVIP
             master = GetComponent<CharacterMaster>();
             if (master)
             {
+                EnsureNameplateUpdated();
+
                 // Flip the Ally to the Player Team
                 master.teamIndex = TeamIndex.Player;
                 TeamComponent teamComponent = master.GetBodyObject().GetComponent<TeamComponent>();
                 teamComponent.teamIndex = TeamIndex.Player;
 
-                master.gameObject.AddComponent<SetDontDestroyOnLoad>();
+                ForceNameplateUpdate();
+
+                gameObject.AddComponent<SetDontDestroyOnLoad>();
 
                 // This causes the Ally to not spawn in the next stage
                 //if (master.gameObject.GetComponent<PlayerCharacterMasterController>() == null)
@@ -35,8 +41,6 @@ namespace ProtectTheVIP
                 //    Debug.LogWarning("Adding PlayerStatsComponent to ally");
                 //    master.gameObject.AddComponent<PlayerStatsComponent>();
                 //}
-
-                ForceNameplate();
             }
         }
 
@@ -44,44 +48,41 @@ namespace ProtectTheVIP
         {
             if (master)
             {
-                ForceNameplate();
+                EnsureNameplateUpdated();
             }
         }
 
-        private void ForceNameplate()
+        private void EnsureNameplateUpdated()
         {
-            // This forces a character nameplate on the ally - as well as other things :)
             CharacterBody body = master.GetBody();
             if (body && !string.IsNullOrWhiteSpace(NameToken) && !body.baseNameToken.Equals(NameToken))
             {
+                Debug.LogWarning($"Updating nameplate: {body.baseNameToken} => {NameToken}");
                 body.baseNameToken = NameToken;
             }
+        }
 
-            if (body?.isPlayerControlled == false)
+        private void ForceNameplateUpdate()
+        {
+            Debug.LogWarning($"Forcing ally {master.GetBody()?.GetDisplayName()} to have player nameplate.");
+
+            TeamComponent team = master.GetBodyObject().GetComponent<TeamComponent>();
+            if (!team)
             {
-                Debug.LogWarning($"Forcing ally {body.GetDisplayName()} to have player nameplate.");
-                typeof(CharacterBody)
-                    .GetProperty("isPlayerControlled", BindingFlags.Instance | BindingFlags.Public)
-                    .SetValue(body, true);
-
-                TeamComponent team = master.GetBodyObject().GetComponent<TeamComponent>();
-                if (!team)
-                {
-                    Debug.LogError("Could not find TeamComponent!");
-                    return;
-                }
-                FieldInfo indicatorField = typeof(TeamComponent)
-                    .GetField("indicator", BindingFlags.Instance | BindingFlags.NonPublic);
-                GameObject indicator = (GameObject)indicatorField.GetValue(team);
-                if (indicator)
-                {
-                    Destroy(indicator);
-                    indicatorField.SetValue(team, null);
-                }
-                typeof(TeamComponent)
-                    .GetMethod("SetupIndicator", BindingFlags.Instance | BindingFlags.NonPublic)
-                    .Invoke(team, new object[0]);
+                Debug.LogError("Could not find TeamComponent!");
+                return;
             }
+            FieldInfo indicatorField = typeof(TeamComponent)
+                .GetField("indicator", BindingFlags.Instance | BindingFlags.NonPublic);
+            GameObject indicator = (GameObject)indicatorField.GetValue(team);
+            if (indicator)
+            {
+                Destroy(indicator);
+                indicatorField.SetValue(team, null);
+            }
+            typeof(TeamComponent)
+                .GetMethod("SetupIndicator", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(team, new object[0]);
         }
     }
 }

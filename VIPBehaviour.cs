@@ -1,11 +1,15 @@
-﻿using RoR2;
+﻿using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using RoR2;
 using RoR2.CharacterAI;
 using RoR2.Stats;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 namespace ProtectTheVIP
 {
@@ -40,11 +44,24 @@ namespace ProtectTheVIP
             allySquad.onMemberLost += AllySquad_onMemberLost;
             allies = new List<CharacterMaster>();
 
+            IL.RoR2.TeamComponent.SetupIndicator += TeamComponent_SetupIndicator;
+
             Stage.onStageStartGlobal += Stage_onStageStartGlobal;
             Run.onServerGameOver += Run_onServerGameOver;
             On.RoR2.Run.OnServerBossAdded += Run_OnServerBossAdded;
             On.RoR2.RunReport.Generate += RunReport_Generate;
             On.RoR2.BarrelInteraction.OnInteractionBegin += BarrelInteraction_OnInteractionBegin;
+        }
+
+        private void TeamComponent_SetupIndicator(ILContext il)
+        {
+            ILCursor cursor = new ILCursor(il);
+            cursor.GotoNext(x => x.MatchCallvirt(typeof(CharacterBody), "get_isPlayerControlled"));
+            cursor.Next.OpCode = OpCodes.Nop;
+            cursor.EmitDelegate<Func<CharacterBody, bool>>((body) =>
+            {
+                return body.isPlayerControlled || body.master.GetComponent<AllyMaster>() != null;
+            });
         }
 
         private void AllySquad_onMemberLost(CharacterMaster master)
@@ -132,6 +149,8 @@ namespace ProtectTheVIP
 
         protected void OnDestroy()
         {
+            IL.RoR2.TeamComponent.SetupIndicator += TeamComponent_SetupIndicator;
+
             Stage.onStageStartGlobal -= Stage_onStageStartGlobal;
             On.RoR2.Run.OnServerBossAdded -= Run_OnServerBossAdded;
             On.RoR2.RunReport.Generate -= RunReport_Generate;
