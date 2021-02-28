@@ -152,6 +152,7 @@ namespace ProtectTheVIP
                 foreach (var masterController in PlayerCharacterMasterController.instances)
                 {
                     SetGodMode(masterController.master, true);
+                    masterController.master.money = 0;
                 }
 
                 foreach (var masterController in PlayerCharacterMasterController.instances)
@@ -175,6 +176,7 @@ namespace ProtectTheVIP
                 foreach (var masterController in PlayerCharacterMasterController.instances)
                 {
                     SetGodMode(masterController.master, false);
+                    masterController.master.GiveMoney(run.ruleBook.startingMoney);
                 }
                 foreach (var master in allies)
                 {
