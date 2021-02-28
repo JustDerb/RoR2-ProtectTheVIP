@@ -98,6 +98,13 @@ Loading more then 10 custom monsters (excluding the default allies) may causes p
 
 # Changelog
 
+### 1.0.2
+
+See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/2?closed=1
+
+* Ally's no longer count towards the "Player Controlled" count; which should not increase the difficulty of teleporters (and other things)
+* Players now correctly start the first stage with the pre-defined starting Gold, instead of zero
+
 ### 1.0.1
 
 See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/1?closed=1
