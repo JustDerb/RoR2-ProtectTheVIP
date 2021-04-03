@@ -222,7 +222,7 @@ namespace ProtectTheVIP
             }
         }
 
-        private IEnumerator SendChat(float delay, Chat.ChatMessageBase message)
+        private IEnumerator SendChat(float delay, ChatMessageBase message)
         {
             yield return new WaitForSeconds(delay);
             Chat.SendBroadcastChat(message);
@@ -296,8 +296,8 @@ namespace ProtectTheVIP
                 CharacterBody allyBody = ally.GetBody();
                 if (allyBody)
                 {
-                    allyBody.AddTimedBuff(BuffIndex.Cloak, delay);
-                    allyBody.AddTimedBuff(BuffIndex.HiddenInvincibility, delay);
+                    allyBody.AddTimedBuff(RoR2Content.Buffs.Cloak, delay);
+                    allyBody.AddTimedBuff(RoR2Content.Buffs.HiddenInvincibility, delay);
                 }
             }
             yield return new WaitForSeconds(delay);
@@ -347,7 +347,7 @@ namespace ProtectTheVIP
                 {
                     TeleportHelper.TeleportBody(allyBody, position.Value);
 
-                    allyBody.AddTimedBuff(BuffIndex.Immune, 3f);
+                    allyBody.AddTimedBuff(RoR2Content.Buffs.Immune, 3f);
                     foreach (EntityStateMachine entityStateMachine in allyBody.GetComponents<EntityStateMachine>())
                     {
                         entityStateMachine.initialStateType = entityStateMachine.mainStateType;
@@ -687,10 +687,10 @@ namespace ProtectTheVIP
 
         private void GiveHelpingHand(CharacterMaster master)
         {
-            master.inventory.GiveItem(ItemIndex.BoostHp, 10);
-            master.inventory.GiveItem(ItemIndex.BoostDamage, 4);
-            master.inventory.GiveItem(ItemIndex.HealWhileSafe, 2);
-            master.inventory.GiveItem(ItemIndex.Medkit, 2);
+            master.inventory.GiveItem(RoR2Content.Items.BoostHp, 10);
+            master.inventory.GiveItem(RoR2Content.Items.BoostDamage, 4);
+            master.inventory.GiveItem(RoR2Content.Items.HealWhileSafe, 2);
+            master.inventory.GiveItem(RoR2Content.Items.Medkit, 2);
         }
 
         private void BarrelInteraction_OnInteractionBegin(On.RoR2.BarrelInteraction.orig_OnInteractionBegin orig, BarrelInteraction self, Interactor activator)

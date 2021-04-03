@@ -98,6 +98,12 @@ Loading more then 10 custom monsters (excluding the default allies) may causes p
 
 # Changelog
 
+### 1.0.3
+
+See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/3?closed=1
+
+* Updated library for new RoR2 release
+
 ### 1.0.2
 
 See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/2?closed=1

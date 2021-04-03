@@ -23,7 +23,7 @@ namespace ProtectTheVIP
     {
         public const string GUID = "com.justinderby.protectthevip";
         public const string ModName = "Protect The VIP";
-        public const string Version = "1.0.2";
+        public const string Version = "1.0.3";
 
         //private GameObject VIPRunPrefab;
 
