@@ -16,14 +16,14 @@ namespace ProtectTheVIP
     [BepInDependency(R2API.R2API.PluginGUID)]
     [BepInPlugin(GUID, ModName, Version)]
     [R2APISubmoduleDependency(nameof(CommandHelper))]
-    [R2APISubmoduleDependency(nameof(R2API.AssetPlus))]
+    [R2APISubmoduleDependency(nameof(R2API.LanguageAPI))]
     [R2APISubmoduleDependency(nameof(R2API.ResourcesAPI))]
     [NetworkCompatibility(CompatibilityLevel.NoNeedForSync, VersionStrictness.DifferentModVersionsAreOk)]
     public class ProtectTheVIP : BaseUnityPlugin
     {
         public const string GUID = "com.justinderby.protectthevip";
         public const string ModName = "Protect The VIP";
-        public const string Version = "1.0.3";
+        public const string Version = "1.0.4";
 
         //private GameObject VIPRunPrefab;
 

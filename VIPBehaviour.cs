@@ -144,7 +144,7 @@ namespace ProtectTheVIP
 
         private void TriggerGameOver()
         {
-            run.BeginGameOver(RoR2Content.GameEndings.standardLoss);
+            run.BeginGameOver(RoR2Content.GameEndings.StandardLoss);
         }
 
         protected void OnDestroy()
