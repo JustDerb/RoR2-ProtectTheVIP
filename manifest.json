@@ -1,10 +1,11 @@
 ﻿{
     "name": "ProtectTheVIP",
-    "version_number": "1.0.4",
+    "version_number": "1.0.5",
     "website_url": "https://github.com/JustDerb/RoR2-ProtectTheVIP",
     "description": "Protect the VIP: If they die, you die.",
     "dependencies": [
         "bbepis-BepInExPack-5.4.9",
-        "tristanmcpherson-R2API-3.0.30"
+        "tristanmcpherson-R2API-3.0.30",
+        "RiskofThunder-HookGenPatcher-1.2.1"
     ]
 }
