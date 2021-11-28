@@ -53,6 +53,17 @@ namespace ProtectTheVIP
             On.RoR2.BarrelInteraction.OnInteractionBegin += BarrelInteraction_OnInteractionBegin;
         }
 
+        protected void OnDestroy()
+        {
+            IL.RoR2.TeamComponent.SetupIndicator -= TeamComponent_SetupIndicator;
+
+            Stage.onStageStartGlobal -= Stage_onStageStartGlobal;
+            On.RoR2.Run.OnServerBossAdded -= Run_OnServerBossAdded;
+            On.RoR2.RunReport.Generate -= RunReport_Generate;
+            On.RoR2.BarrelInteraction.OnInteractionBegin -= BarrelInteraction_OnInteractionBegin;
+            On.EntityStates.Missions.BrotherEncounter.Phase1.OnEnter -= Phase1_OnEnter;
+        }
+
         private void TeamComponent_SetupIndicator(ILContext il)
         {
             ILCursor cursor = new ILCursor(il);
@@ -145,17 +156,6 @@ namespace ProtectTheVIP
         private void TriggerGameOver()
         {
             run.BeginGameOver(RoR2Content.GameEndings.StandardLoss);
-        }
-
-        protected void OnDestroy()
-        {
-            IL.RoR2.TeamComponent.SetupIndicator += TeamComponent_SetupIndicator;
-
-            Stage.onStageStartGlobal -= Stage_onStageStartGlobal;
-            On.RoR2.Run.OnServerBossAdded -= Run_OnServerBossAdded;
-            On.RoR2.RunReport.Generate -= RunReport_Generate;
-            On.RoR2.BarrelInteraction.OnInteractionBegin -= BarrelInteraction_OnInteractionBegin;
-            On.EntityStates.Missions.BrotherEncounter.Phase1.OnEnter -= Phase1_OnEnter;
         }
 
         private void Stage_onStageStartGlobal(Stage stage)

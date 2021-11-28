@@ -98,6 +98,10 @@ Loading more then 10 custom monsters (excluding the default allies) may causes p
 
 # Changelog
 
+### 1.0.6
+
+* Fixed bug where you could only play the mod once before it broke
+
 ### 1.0.3
 
 See more info: https://github.com/JustDerb/RoR2-ProtectTheVIP/milestone/3?closed=1
