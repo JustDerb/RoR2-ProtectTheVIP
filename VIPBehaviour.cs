@@ -25,7 +25,7 @@ namespace ProtectTheVIP
         }
 
         private Run run;
-        private SceneDef[] initialStartingScenes;
+        private SceneCollection initialStartingScenes;
 
         public List<CharacterSpawnCard> characterAllies = new List<CharacterSpawnCard>();
         
@@ -37,12 +37,20 @@ namespace ProtectTheVIP
         protected void Awake()
         {
             run = GetComponent<Run>();
-            initialStartingScenes = run.startingScenes;
-            run.startingScenes = new SceneDef[] { SceneCatalog.GetSceneDefFromSceneName("limbo") };
+            initialStartingScenes = run.startingSceneGroup;
+            //run.startingSceneGroup = ScriptableObject.CreateInstance<SceneCollection>();
+            //run.startingSceneGroup.SetSceneEntries(new SceneCollection.SceneEntry[] {
+            //    new SceneCollection.SceneEntry {
+            //        sceneDef = SceneCatalog.GetSceneDefFromSceneName("limbo"),
+            //        weight = 1,
+            //    },
+            //});
 
             allySquad = gameObject.AddComponent<CombatSquad>();
             allySquad.onMemberLost += AllySquad_onMemberLost;
             allies = new List<CharacterMaster>();
+
+            On.RoR2.Run.PickNextStageScene += Run_ForceVIPScene;
 
             IL.RoR2.TeamComponent.SetupIndicator += TeamComponent_SetupIndicator;
 
@@ -51,6 +59,14 @@ namespace ProtectTheVIP
             On.RoR2.Run.OnServerBossAdded += Run_OnServerBossAdded;
             On.RoR2.RunReport.Generate += RunReport_Generate;
             On.RoR2.BarrelInteraction.OnInteractionBegin += BarrelInteraction_OnInteractionBegin;
+        }
+
+        private void Run_ForceVIPScene(On.RoR2.Run.orig_PickNextStageScene orig, Run self, WeightedSelection<SceneDef> choices)
+        {
+            Debug.Log("Forcing scene to 'limbo'");
+            self.nextStageScene = SceneCatalog.GetSceneDefFromSceneName("limbo");
+            // Remove ourselves
+            On.RoR2.Run.PickNextStageScene -= Run_ForceVIPScene;
         }
 
         protected void OnDestroy()
@@ -248,10 +264,11 @@ namespace ProtectTheVIP
 
                 // Try one more time with a more direct approach
                 if (body) {
+                    Transform bodyTransform = getTransform(body);
                     Vector3 position = new Vector3(
-                        body.transform.position.x + Random.Range(-5f, 5f),
-                        body.transform.position.y + 10f,
-                        body.transform.position.z + Random.Range(-5f, 5f));
+                        bodyTransform.position.x + Random.Range(-5f, 5f),
+                        bodyTransform.position.y + 10f,
+                        bodyTransform.position.z + Random.Range(-5f, 5f));
                     if (Physics.Raycast(position, Vector3.down, out RaycastHit hit, 30f, LayerIndex.world.mask))
                     {
                         position = hit.point;
@@ -356,10 +373,11 @@ namespace ProtectTheVIP
                     GameObject respawnEffect = Resources.Load<GameObject>("Prefabs/Effects/HippoRezEffect");
                     if (respawnEffect)
                     {
+                        Transform bodyTransform = getTransform(allyBody);
                         EffectManager.SpawnEffect(respawnEffect, new EffectData
                         {
                             origin = position.Value,
-                            rotation = allyBody.transform.rotation,
+                            rotation = bodyTransform.rotation,
                             scale = allyBody.bestFitRadius * 2f
                         }, true);
                     }
@@ -418,7 +436,7 @@ namespace ProtectTheVIP
 
             int numSpawns = characterAllies.Count;
             float radius = Mathf.Max(30f, (numSpawns + 1) * 3f);
-            Vector3 center = master.GetBody().transform.position;
+            Vector3 center = getTransform(master.GetBody()).position;
 
             // Disable Swarm if enabled, as that spawns multiple enemies, which we don't want
             bool swarmsWasEnabled = false;
@@ -768,16 +786,25 @@ namespace ProtectTheVIP
         {
             if (NetworkServer.active && !SceneExitController.isRunning)
             {
-                SceneDef[] startingScenes = initialStartingScenes;
-                if (startingScenes == null || startingScenes.Length == 0)
+                SceneCollection startingScenes = initialStartingScenes;
+                if (startingScenes == null || startingScenes.isEmpty)
                 {
-                    startingScenes = new SceneDef[] {
-                        SceneCatalog.GetSceneDefFromSceneName("blackbeach"),
-                        SceneCatalog.GetSceneDefFromSceneName("golemplains")
-                    };
+                    startingScenes = ScriptableObject.CreateInstance<SceneCollection>();
+                    startingScenes.SetSceneEntries(new SceneCollection.SceneEntry[] {
+                        new SceneCollection.SceneEntry {
+                            sceneDef = SceneCatalog.GetSceneDefFromSceneName("blackbeach"),
+                            weight = 1,
+                        },
+                        new SceneCollection.SceneEntry {
+                            sceneDef = SceneCatalog.GetSceneDefFromSceneName("golemplains"),
+                            weight = 1,
+                        },
+                    });
                 }
 
-                run.PickNextStageScene(startingScenes);
+                WeightedSelection<SceneDef> sceneDefs = new WeightedSelection<SceneDef>();
+                startingScenes.AddToWeightedSelection(sceneDefs);
+                run.PickNextStageScene(sceneDefs);
                 SceneExitController exitController = gameObject.AddComponent<SceneExitController>();
                 exitController.useRunNextStageScene = true;
                 Debug.Log("Advancing to next stage...");
@@ -791,7 +818,7 @@ namespace ProtectTheVIP
             orig(self, bossGroup, characterMaster);
         }
 
-        public void OnServerBossAdded(BossGroup bossGroup, CharacterMaster characterMaster)
+        public void OnServerBossAdded(BossGroup _, CharacterMaster characterMaster)
         {
             if (IsOnVIPSelectionStage)
             {
@@ -805,6 +832,12 @@ namespace ProtectTheVIP
                 characterMaster.DestroyBody();
                 Destroy(characterMaster);
             }
+        }
+
+        private Transform getTransform(CharacterBody body)
+        {
+            FieldInfo transformField = typeof(CharacterBody).GetField("transform", BindingFlags.Instance | BindingFlags.NonPublic);
+            return (Transform)transformField.GetValue(body);
         }
     }
 }

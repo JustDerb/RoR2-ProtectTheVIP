@@ -98,6 +98,13 @@ Loading more then 10 custom monsters (excluding the default allies) may causes p
 
 # Changelog
 
+### 1.0.7
+
+See more info: https://github.com/JustDerb/RoR2-VsTwitch/milestone/5?closed=1
+
+* Removed R2API dependency
+* Update code to work with the new Risk of Rain 2 DLC: Survivors of the Void
+
 ### 1.0.6
 
 * Fixed bug where you could only play the mod once before it broke

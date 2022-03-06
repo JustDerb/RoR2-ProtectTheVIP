@@ -1,29 +1,20 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
-using R2API.Utils;
 using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-// TODO:
-// Fix AI to follow better
-// Teleport VIP if you get too far from them??
-// Ping to make AI follow??
+// Allow scanning for ConCommand, and other stuff for Risk of Rain 2
+[assembly: HG.Reflection.SearchableAttribute.OptIn]
 namespace ProtectTheVIP
 {
-    [BepInDependency(R2API.R2API.PluginGUID)]
     [BepInPlugin(GUID, ModName, Version)]
-    [R2APISubmoduleDependency(nameof(CommandHelper))]
-    [R2APISubmoduleDependency(nameof(R2API.LanguageAPI))]
-    [R2APISubmoduleDependency(nameof(R2API.ResourcesAPI))]
-    [NetworkCompatibility(CompatibilityLevel.NoNeedForSync, VersionStrictness.DifferentModVersionsAreOk)]
     public class ProtectTheVIP : BaseUnityPlugin
     {
         public const string GUID = "com.justinderby.protectthevip";
-        public const string ModName = "Protect The VIP";
-        public const string Version = "1.0.6";
+        public const string ModName = "ProtectTheVIP";
+        public const string Version = "1.0.7";
 
         //private GameObject VIPRunPrefab;
 
@@ -37,8 +28,6 @@ namespace ProtectTheVIP
         {
             Instance = SingletonHelper.Assign(Instance, this);
 
-            CommandHelper.AddToConsoleWhenReady();
-
             LogSpawnCards = Config.Bind("SpawnCards", "LogToConsole", false, "Log all available spawn cards from \"SpawnCards/CharacterSpawnCards/\"");
             CustomSpawnCards = Config.Bind("SpawnCards", "CustomSpawnCards",
                 "SpawnCards/CharacterSpawnCards/cscJellyfish; SpawnCards/CharacterSpawnCards/cscRoboBallMini",
@@ -46,9 +35,15 @@ namespace ProtectTheVIP
 
             if (LogSpawnCards.Value)
             {
-                foreach (var resource in Resources.LoadAll<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/"))
+                List<String> allPaths = new List<string>();
+                LegacyResourcesAPI.GetAllPaths(allPaths);
+
+                foreach (var resource in allPaths)
                 {
-                    Debug.LogError(resource.name);
+                    if (resource.StartsWith("SpawnCards/CharacterSpawnCards/"))
+                    {
+                        Debug.LogError(resource);
+                    }
                 }
             }
 
@@ -123,18 +118,18 @@ namespace ProtectTheVIP
 
         private void SetupVIP(List<CharacterSpawnCard> characterAllies)
         {
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBeetle"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscLemurian"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscLemurianBruiser"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscMiniMushroom"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscParent"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscVulture"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBison"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBell"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscClayBruiser"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscGolem"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscImp"));
-            characterAllies.Add(Resources.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscScav"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBeetle"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscLemurian"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscLemurianBruiser"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscMiniMushroom"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscParent"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscVulture"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBison"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscBell"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscClayBruiser"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscGolem"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscImp"));
+            characterAllies.Add(LegacyResourcesAPI.Load<CharacterSpawnCard>("SpawnCards/CharacterSpawnCards/cscScav"));
 
             string spawnCards = CustomSpawnCards.Value;
             if (string.IsNullOrWhiteSpace(spawnCards))
@@ -147,7 +142,7 @@ namespace ProtectTheVIP
                 string spawnCardSanitized = spawnCard.Trim();
                 try
                 {
-                    CharacterSpawnCard csc = Resources.Load<CharacterSpawnCard>(spawnCardSanitized);
+                    CharacterSpawnCard csc = LegacyResourcesAPI.Load<CharacterSpawnCard>(spawnCardSanitized);
                     if (csc)
                     {
                         characterAllies.Add(csc);
